@@ -5,7 +5,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
-if __name__ == '__main__':
+def auth_google():
     credential = None
     if os.path.exists('token.json'):
         credential = Credentials.from_authorized_user_file('token.json', ['SCOPE'])
@@ -20,5 +20,4 @@ if __name__ == '__main__':
         with open('token.json', 'w') as token:
             token.write(credential.to_json())
 
-    service = build('drive', 'v3', credentials=credential)
-    print(service)
+    return build('drive', 'v3', credentials=credential)
